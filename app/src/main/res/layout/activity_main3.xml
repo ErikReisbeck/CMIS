@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".InputScreen">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Overview"/>
+
+        <Button
+            android:id="@+id/button16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="logging"/>
+
+        <Button
+            android:id="@+id/button17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="calendar"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/button13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#3F51B5"
+            android:shadowColor="#FFFFFF"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:text="Income"
+            android:textSize="30sp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_weight="1"
+            android:layout_gravity="end"
+            app:srcCompat="@android:drawable/ic_input_add"/>
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/editTextTextPersonName5"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="Text Input"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName6"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="Text Input"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName7"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="Text Input"
+        android:inputType="textPersonName" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/button14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#3F51B5"
+            android:text="Expenses"
+            android:textSize="30sp" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/ic_input_add" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/entertainmentExp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="Text Input"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/groceriesExp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="Text Input"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/gasExp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="Text Input"
+        android:inputType="textPersonName" />
+
+
+</LinearLayout>
