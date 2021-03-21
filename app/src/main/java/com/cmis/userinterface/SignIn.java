@@ -21,7 +21,7 @@ public class SignIn extends AppCompatActivity {
         final Button signIn = findViewById(R.id.signIn);
         signIn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent overview = new Intent(SignIn.this, Overview.class);
+                Intent overview = new Intent(SignIn.this, InputScreen.class);
 
                 String name = nameEdit.getText().toString();
                 String password = passwordEdit.getText().toString();

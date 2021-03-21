@@ -22,16 +22,16 @@ public class SignUp extends AppCompatActivity {
         final Button signUp = findViewById(R.id.signUp2);
         signUp.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent overview = new Intent(SignUp.this, Overview.class);
+                Intent inputScreen = new Intent(SignUp.this, InputScreen.class);
 
                 String name = nameEdit.getText().toString();
                 String password = passwordEdit.getText().toString();
                 String email = emailEdit.getText().toString();
-                overview.putExtra("username",name);
-                overview.putExtra("password", password);
-                overview.putExtra("email", email);
+                inputScreen.putExtra("username",name);
+                inputScreen.putExtra("password", password);
+                inputScreen.putExtra("email", email);
 
-                startActivity(overview);
+                startActivity(inputScreen);
 
             }
         }

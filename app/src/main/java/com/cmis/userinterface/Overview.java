@@ -18,13 +18,21 @@ import java.util.List;
 
 public class Overview extends AppCompatActivity {
     AnyChartView anyChartView;
-    String[] months = {"Jan", "Feb", "Mar"};
-    int[] spending = {500, 800, 2000};
+    ArrayList<String> categoriesList = new ArrayList<String>();
+    ArrayList<Integer> amountList = new ArrayList<Integer>();
+    String username;
+    //String[] months = {"Jan", "Feb", "Mar"};
+    //int[] spending = {500, 800, 2000};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
+
+        Intent intent = getIntent();
+        categoriesList = intent.getStringArrayListExtra("categoriesList");
+        amountList = intent.getIntegerArrayListExtra("amountList");
+        username = intent.getStringExtra("username");
 
         final Button overview = findViewById(R.id.overviewBtn);
         overview.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +47,7 @@ public class Overview extends AppCompatActivity {
         logging.setOnClickListener(new View.OnClickListener() {
                                       public void onClick(View v) {
                                           Intent InputScreen = new Intent(Overview.this, InputScreen.class);
+                                          InputScreen.putExtra("username", username);
 
                                           startActivity(InputScreen);
                                       }
@@ -63,11 +72,11 @@ public class Overview extends AppCompatActivity {
         Pie pie = AnyChart.pie();
         List<DataEntry> dataEntries = new ArrayList<>();
 
-        for (int i = 0; i < months.length; i++){
-            dataEntries.add(new ValueDataEntry(months[i], spending[i]));
+        for (int i = 0; i < categoriesList.size(); i++){
+            dataEntries.add(new ValueDataEntry(categoriesList.get(i), amountList.get(i)));
         }
         pie.data(dataEntries);
-        pie.title("Your Budget at a glance");
+        pie.title("Budget of " + username);
         anyChartView.setChart(pie);
 
     }
