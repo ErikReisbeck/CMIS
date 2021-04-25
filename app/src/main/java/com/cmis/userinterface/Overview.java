@@ -21,6 +21,7 @@ public class Overview extends AppCompatActivity {
     ArrayList<String> categoriesList = new ArrayList<String>();
     ArrayList<Integer> amountList = new ArrayList<Integer>();
     String username;
+    EntryDao entryDao;
     //String[] months = {"Jan", "Feb", "Mar"};
     //int[] spending = {500, 800, 2000};
 
@@ -29,10 +30,13 @@ public class Overview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
 
-        Intent intent = getIntent();
-        categoriesList = intent.getStringArrayListExtra("categoriesList");
-        amountList = intent.getIntegerArrayListExtra("amountList");
-        username = intent.getStringExtra("username");
+        //Intent intent = getIntent();
+        //categoriesList = intent.getStringArrayListExtra("categoriesList");
+        //amountList = intent.getIntegerArrayListExtra("amountList");
+        //username = intent.getStringExtra("username");
+
+        Database db = Database.getDatabase(this);
+        entryDao = db.entriesDao();
 
         final Button overview = findViewById(R.id.overviewBtn);
         overview.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +51,7 @@ public class Overview extends AppCompatActivity {
         logging.setOnClickListener(new View.OnClickListener() {
                                       public void onClick(View v) {
                                           Intent InputScreen = new Intent(Overview.this, InputScreen.class);
-                                          InputScreen.putExtra("username", username);
+                                          //InputScreen.putExtra("username", username);
 
                                           startActivity(InputScreen);
                                       }
@@ -71,12 +75,13 @@ public class Overview extends AppCompatActivity {
 
         Pie pie = AnyChart.pie();
         List<DataEntry> dataEntries = new ArrayList<>();
+        List<Entry> entryList = entryDao.getAll();
 
-        for (int i = 0; i < categoriesList.size(); i++){
-            dataEntries.add(new ValueDataEntry(categoriesList.get(i), amountList.get(i)));
+        for (int i = 0; i < entryList.size(); i++){
+            dataEntries.add(new ValueDataEntry(entryList.get(i).category, entryList.get(i).amount));
         }
         pie.data(dataEntries);
-        pie.title("Budget of " + username);
+        pie.title("Your Expenses");
         anyChartView.setChart(pie);
 
     }

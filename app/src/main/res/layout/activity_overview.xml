@@ -13,21 +13,24 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            android:background="@drawable/custom_button"
             android:id="@+id/overviewBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Overview"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            android:background="@drawable/custom_button"
             android:id="@+id/loggingBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="logging"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            android:background="@drawable/custom_button"
             android:id="@+id/calendarBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,6 +42,7 @@
         android:id="@+id/pieChart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#F3FBFB"
         android:layout_marginTop="20dp">
 
     </com.anychart.AnyChartView>

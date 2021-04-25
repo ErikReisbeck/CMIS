@@ -12,26 +12,29 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Overview"/>
+            android:background="@drawable/custom_button"
+            android:text="Overview" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="logging"/>
+            android:background="@drawable/custom_button"
+            android:text="logging" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="calendar"/>
+            android:background="@drawable/custom_button"
+            android:text="calendar" />
     </LinearLayout>
 
     <LinearLayout
@@ -76,7 +79,7 @@
             android:id="@+id/incomeAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Text Input"
+            android:hint="Amount of Income"
             android:inputType="number" />
     </LinearLayout>
 
@@ -95,7 +98,7 @@
             android:id="@+id/incomeCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Text Input"
+            android:hint="Type of Income"
             android:inputType="textPersonName" />
     </LinearLayout>
 
@@ -114,7 +117,7 @@
             android:id="@+id/incomeDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Text Input"
+            android:hint="Date of Income"
             android:inputType="date" />
     </LinearLayout>
 
@@ -157,7 +160,7 @@
             android:id="@+id/expensesAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Text Input"
+            android:hint="Amount of Expense"
             android:inputType="number" />
     </LinearLayout>
 
@@ -176,7 +179,7 @@
             android:id="@+id/expensesCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Text Input"
+            android:hint="Type of Expense"
             android:inputType="textPersonName" />
     </LinearLayout>
 
@@ -195,7 +198,7 @@
             android:id="@+id/expensesDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Text Input"
+            android:hint="Date of Expense"
             android:inputType="datetime" />
     </LinearLayout>
 </LinearLayout>

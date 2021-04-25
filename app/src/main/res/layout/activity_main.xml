@@ -40,19 +40,21 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            android:background="@drawable/custom_button"
             android:id="@+id/signUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign up"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:text="Sign up" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/signIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign in"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="@drawable/custom_button"
+            android:text="Sign in" />
     </LinearLayout>
 
 

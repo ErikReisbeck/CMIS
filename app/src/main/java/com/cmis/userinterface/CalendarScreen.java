@@ -11,16 +11,14 @@ import android.widget.CalendarView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CalendarScreen extends AppCompatActivity {
 
     CalendarView mCalendarView;
-    ArrayList<String> categoriesList = new ArrayList<String>();
-    ArrayList<Integer> amountList = new ArrayList<Integer>();
-    ArrayList<String> dateList = new ArrayList<String>();
     TextView spentText;
     TextView spentName;
-    String username;
+    EntryDao entryDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,32 +28,24 @@ public class CalendarScreen extends AppCompatActivity {
         spentText = findViewById(R.id.spentText);
         spentName = findViewById(R.id.spentName);
 
-        Intent intent = getIntent();
+        Database db = Database.getDatabase(this);
+        entryDao = db.entriesDao();
+        List<Entry> entryList = entryDao.getAll();
 
-        categoriesList = intent.getStringArrayListExtra("categoriesList");
-        amountList = intent.getIntegerArrayListExtra("amountList");
-        dateList = intent.getStringArrayListExtra("dateList");
-        username = intent.getStringExtra("username");
-
-            mCalendarView = findViewById(R.id.calendarView);
-            mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        mCalendarView = findViewById(R.id.calendarView);
+        mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
                 @Override
                 public void onSelectedDayChange(@NonNull CalendarView view, int i, int i1, int i2) {
                     String date = (i1+1) + "/" + i2 + "/" + i;
+                    System.out.println(date);
 
                     spentText.setText("Money Earned: $0");
-                    spentName.setText("Income Name: ");
+                    spentName.setText("Expense Name: ");
 
-                    for(int k = 0; k < dateList.size(); k++)
-                    {
-                        if(dateList.get(k).equals(date))
-                        {
-
-                            int amt = amountList.get(k);
-                            String category = categoriesList.get(k);
-
-                            spentText.setText("Money Earned: $" + amt);
-                            spentName.setText("Income Name: " + category);
+                    for(int k = 0; k < entryList.size(); k++) {
+                        if(entryList.get(k).date.equals(date)) {
+                            spentText.setText("Money Earned: $" + entryList.get(k).amount);
+                            spentName.setText("Expense Name: " + entryList.get(k).category);
                         }
 
                     }
@@ -68,7 +58,6 @@ public class CalendarScreen extends AppCompatActivity {
         overview.setOnClickListener(new View.OnClickListener() {
                                         public void onClick(View v) {
                                             Intent overview = new Intent(CalendarScreen.this, Overview.class);
-                                            overview.putExtra("username", username);
                                             startActivity(overview);
                                         }
                                     }
@@ -77,8 +66,6 @@ public class CalendarScreen extends AppCompatActivity {
         logging.setOnClickListener(new View.OnClickListener() {
                                        public void onClick(View v) {
                                            Intent InputScreen = new Intent(CalendarScreen.this, InputScreen.class);
-                                           InputScreen.putExtra("username", username);
-
                                            startActivity(InputScreen);
                                        }
                                    }
@@ -87,8 +74,6 @@ public class CalendarScreen extends AppCompatActivity {
         calendar.setOnClickListener(new View.OnClickListener() {
                                         public void onClick(View v) {
                                             Intent Calendar = new Intent(CalendarScreen.this, CalendarScreen.class);
-                                            Calendar.putExtra("username", username);
-
                                             startActivity(Calendar);
                                         }
                                     }

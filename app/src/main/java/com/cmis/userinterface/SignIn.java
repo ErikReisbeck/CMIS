@@ -1,6 +1,7 @@
 package com.cmis.userinterface;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,15 +19,18 @@ public class SignIn extends AppCompatActivity {
         EditText nameEdit = findViewById(R.id.username);
         EditText passwordEdit = findViewById(R.id.password);
 
+        Database db = Database.getDatabase(this);
+        UserDao userDao = db.userDao();
+
         final Button signIn = findViewById(R.id.signIn);
         signIn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent overview = new Intent(SignIn.this, InputScreen.class);
 
-                String name = nameEdit.getText().toString();
-                String password = passwordEdit.getText().toString();
-                overview.putExtra("username",name);
-                overview.putExtra("password", password);
+                //String name = nameEdit.getText().toString();
+                //String password = passwordEdit.getText().toString();
+                //overview.putExtra("username",name);
+                //overview.putExtra("password", password);
 
                 startActivity(overview);
 

@@ -19,17 +19,18 @@ public class SignUp extends AppCompatActivity {
         EditText passwordEdit = findViewById(R.id.password2);
         EditText emailEdit = findViewById(R.id.email);
 
+        Database db = Database.getDatabase(this);
+        UserDao userDao = db.userDao();
+
         final Button signUp = findViewById(R.id.signUp2);
         signUp.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent inputScreen = new Intent(SignUp.this, InputScreen.class);
 
-                String name = nameEdit.getText().toString();
-                String password = passwordEdit.getText().toString();
-                String email = emailEdit.getText().toString();
-                inputScreen.putExtra("username",name);
-                inputScreen.putExtra("password", password);
-                inputScreen.putExtra("email", email);
+                User newUser = new User(emailEdit.getText().toString(), nameEdit.getText().toString(),
+                        passwordEdit.getText().toString());
+                userDao.insertUser(newUser);
+
 
                 startActivity(inputScreen);
 

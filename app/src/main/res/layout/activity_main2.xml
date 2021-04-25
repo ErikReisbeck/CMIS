@@ -49,10 +49,12 @@
             android:inputType="textPersonName" />
     </LinearLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signUp2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:background="@drawable/custom_button"
+        android:singleLine="false"
         android:text="Sign up" />
 </LinearLayout>

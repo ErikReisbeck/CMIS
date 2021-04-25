@@ -15,16 +15,13 @@ import java.util.ArrayList;
 public class InputScreen extends AppCompatActivity {
     EditText incomeAmount, incomeCategory, incomeDate, expensesAmount, expensesCategory, expensesDate;
     FloatingActionButton incomeButton, expensesButton;
-    ArrayList<String> categoriesList = new ArrayList<String>();
-    ArrayList<Integer> amountList = new ArrayList<Integer>();
-    ArrayList<String> dateList = new ArrayList<String>();
-    String username;
+    EntryDao entryDao;
 
 
     public void incomeOnClick(View view){
-        amountList.add(Integer.parseInt(incomeAmount.getText().toString()));
-        categoriesList.add(incomeCategory.getText().toString());
-        dateList.add(incomeDate.getText().toString());
+        //amountList.add(Integer.parseInt(incomeAmount.getText().toString()));
+        //categoriesList.add(incomeCategory.getText().toString());
+        //dateList.add(incomeDate.getText().toString());
 
         incomeAmount.setText("");
         incomeCategory.setText("");
@@ -32,7 +29,16 @@ public class InputScreen extends AppCompatActivity {
 
     }
     public void expensesOnClick(View view){
+        int amount = Integer.parseInt(expensesAmount.getText().toString());
+        String category = expensesCategory.getText().toString();
+        String date = expensesDate.getText().toString();
 
+        Entry newEntry = new Entry(amount, category, date);
+        entryDao.insertEntry(newEntry);
+
+        expensesAmount.getText().clear();
+        expensesCategory.getText().clear();
+        expensesDate.getText().clear();
     }
 
 
@@ -40,6 +46,9 @@ public class InputScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
+
+        Database db = Database.getDatabase(this);
+        entryDao = db.entriesDao();
 
         incomeAmount =  findViewById(R.id.incomeAmount);
         incomeCategory =  findViewById(R.id.incomeCategory);
@@ -49,18 +58,11 @@ public class InputScreen extends AppCompatActivity {
         expensesDate =  findViewById(R.id.expensesDate);
         incomeButton = findViewById(R.id.incomeButton);
         expensesButton = findViewById(R.id.expensesButton);
-        Intent intent = getIntent();
-        username = intent.getStringExtra("username");
 
         final Button overview = findViewById(R.id.button15);
         overview.setOnClickListener(new View.OnClickListener() {
                                         public void onClick(View v) {
                                             Intent overview = new Intent(InputScreen.this, Overview.class);
-                                            overview.putStringArrayListExtra("categoriesList", categoriesList);
-                                            overview.putIntegerArrayListExtra("amountList", amountList);
-                                            overview.putStringArrayListExtra("dateList", dateList);
-                                            overview.putExtra("username", username);
-
                                             startActivity(overview);
                                         }
                                     }
@@ -69,8 +71,6 @@ public class InputScreen extends AppCompatActivity {
         logging.setOnClickListener(new View.OnClickListener() {
                                        public void onClick(View v) {
                                            Intent InputScreen = new Intent(InputScreen.this, InputScreen.class);
-                                           InputScreen.putExtra("username", username);
-
                                            startActivity(InputScreen);
                                        }
                                    }
@@ -79,11 +79,6 @@ public class InputScreen extends AppCompatActivity {
         calendar.setOnClickListener(new View.OnClickListener() {
                                         public void onClick(View v) {
                                             Intent Calendar = new Intent(InputScreen.this, CalendarScreen.class);
-                                            Calendar.putExtra("username", username);
-                                            Calendar.putStringArrayListExtra("categoriesList", categoriesList);
-                                            Calendar.putStringArrayListExtra("dateList", dateList);
-                                            Calendar.putIntegerArrayListExtra("amountList", amountList);
-
                                             startActivity(Calendar);
                                         }
                                     }
